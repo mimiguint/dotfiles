@@ -1,0 +1,3 @@
+setlocal nowrap ts=2 sts=2 sw=2 expandtab
+
+nnoremap <Leader><C-e> <C-u>:!ruby %<CR>
