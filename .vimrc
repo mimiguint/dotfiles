@@ -139,7 +139,7 @@ endif
 "
 let g:NERDTreeShowHidden = 1
 
-nnoremap <Leader>e :NERDTreeToggle<CR>
+nnoremap <silent><C-n> :NERDTreeToggle<CR>
 
 
 " vim-plug: vim-airline
