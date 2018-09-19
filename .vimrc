@@ -54,9 +54,9 @@ set hidden
 set autoread
 
 " tab width
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 
 " directory (backups, swaps, undo, ...)
@@ -90,12 +90,6 @@ set showcmd
 set showmatch
 set list
 set listchars=tab:>_,trail:_,extends:\
-
-augroup ZenkakuSpace
-    autocmd!
-    autocmd Colorscheme * highlight ZenkakuSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
-    autocmd VimEnter,WinEnter * match ZenkakuSpace /¡¡/
-augroup END
 
 
 " mapping
