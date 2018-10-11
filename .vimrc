@@ -1,23 +1,22 @@
 " vim-plug
 "
 if empty(glob('~/.vim/autoload/plug.vim'))
-    if !executable("curl")
-        echoerr "You have to install curl or first install vim-plug yourself!"
-        execute "q!"
-    endif
-    echo "Installing vim-plug..."
-    echo ""
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    let g:not_finish_vimplug = "yes"
-    autocmd VimEnter * PlugInstall
+  if !executable("curl")
+    echoerr "You have to install curl or first install vim-plug yourself!"
+    execute "q!"
+  endif
+  echo "Installing vim-plug..."
+  echo ""
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  let g:not_finish_vimplug = "yes"
+  autocmd VimEnter * PlugInstall
 endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'gosukiwi/vim-atom-dark'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -69,9 +68,9 @@ let g:mapleader=','
 
 " auto comment
 augroup auto_comment_off
-    autocmd!
-    autocmd BufEnter * setlocal formatoptions-=r
-    autocmd BufEnter * setlocal formatoptions-=o
+  autocmd!
+  autocmd BufEnter * setlocal formatoptions-=r
+  autocmd BufEnter * setlocal formatoptions-=o
 augroup END
 
 " plugin
@@ -90,6 +89,7 @@ set showcmd
 set showmatch
 set list
 set listchars=tab:>_,trail:_,extends:\
+set laststatus=2
 
 
 " mapping
@@ -125,7 +125,7 @@ nnoremap <silent><ESC><ESC> :nohlsearch<CR>
 " vim-plug: vim-atom-dark
 "
 if !exists('g:not_finish_vimplug')
-    colorscheme atom-dark-256
+  colorscheme atom-dark-256
 endif
 
 
@@ -136,16 +136,6 @@ let g:NERDTreeShowHidden = 1
 nnoremap <silent><C-n> :NERDTreeToggle<CR>
 
 
-" vim-plug: vim-airline
-"
-let g:airline_theme = 'powerlineish'
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline_skip_empty_sections = 1
-
-
 " vim-plug: neocomplete
 "
 let g:acp_enableAtStartup = 0
@@ -154,10 +144,10 @@ let g:neocomplete#enable_smart_case = 1
 """let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : ''
-        \ }
+  \ 'default' : ''
+    \ }
 if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
+  let g:neocomplete#keyword_patterns = {}
 endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
@@ -166,8 +156,8 @@ inoremap <expr><C-l> neocomplete#complete_common_string()
 inoremap <silent><CR> <C-r>=<SID>my_cr_function()<CR>
 
 function! s:my_cr_function()
-"""    return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-    return pumvisible() ? "\<C-y>" : "\<CR>"
+"""  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -181,7 +171,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
+  let g:neocomplete#sources#omni#input_patterns = {}
 endif
 """let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 """let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
@@ -196,14 +186,14 @@ smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
 
 imap <expr><TAB>
-    \ pumvisible() ? "\<C-n>" :
-        \ neosnippet#expandable_or_jumpable() ?
-        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ pumvisible() ? "\<C-n>" :
+    \ neosnippet#expandable_or_jumpable() ?
     \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 if has('conceal')
-    set conceallevel=2 concealcursor=niv
+  set conceallevel=2 concealcursor=niv
 endif
 
 
