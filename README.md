@@ -7,7 +7,7 @@ ln -s ~/dotfiles/.vim ~/.vim
 ln -s ~/dotfiles/.vimrc ~/.vimrc
 ```
 
-Install vim-plug (https://github.com/junegunn/vim-plug#installation)
+Install `vim-plug` (https://github.com/junegunn/vim-plug#installation)
 ```
 # Vim (Unix)
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
