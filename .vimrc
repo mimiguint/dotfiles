@@ -1,27 +1,16 @@
-" vim-plug
-"
-call plug#begin('~/.vim/plugged')
-Plug 'gosukiwi/vim-atom-dark'
-Plug 'scrooloose/nerdtree'
-Plug 'itchyny/lightline.vim'
-Plug 'Shougo/neocomplete.vim'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'tomtom/tcomment_vim'
-Plug 'Townk/vim-autoclose'
-Plug 'tpope/vim-endwise'
-Plug 'Yggdroot/indentLine'
-Plug 'Lokaltog/vim-easymotion'
-Plug 'bronson/vim-trailing-whitespace'
-call plug#end()
-
-
 " encoding
 "
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8,iso-2022-jp,euc-jp,cp932
-set fileformats=unix,dos,mac
+if has('win32')
+  set encoding=cp932
+  set fileencoding=cp932
+  set fileencodings=cp932,utf-8,iso-2022-jp,euc-jp
+  set fileformats=dos,unix,mac
+else
+  set encoding=utf-8
+  set fileencoding=utf-8
+  set fileencodings=utf-8,iso-2022-jp,euc-jp,cp932
+  set fileformats=unix,dos,mac
+endif
 
 
 " default option
@@ -38,6 +27,7 @@ set wrapscan
 set ttyfast
 set hidden
 set autoread
+set clipboard=unnamed,unnamedplus
 
 " tab width
 set tabstop=2
@@ -46,9 +36,15 @@ set shiftwidth=2
 set expandtab
 
 " directory (backups, swaps, undo, ...)
-set backupdir=$HOME/.vim/backups
-set directory=$HOME/.vim/swaps
-set undodir=$HOME/.vim/undo
+if has('win32')
+  set backupdir=$HOME/vimfiles/backups
+  set directory=$HOME/vimfiles/swaps
+  set undodir=$HOME/vimfiles/undo
+else
+  set backupdir=$HOME/.vim/backups
+  set directory=$HOME/.vim/swaps
+  set undodir=$HOME/.vim/undo
+endif
 
 " leader key
 let g:mapleader=','
@@ -84,6 +80,16 @@ set laststatus=2
 nnoremap j gj
 nnoremap k gk
 
+" delete
+nnoremap x "_x
+nnoremap X "_X
+vnoremap x "_x
+vnoremap X "_X
+nnoremap s "_s
+nnoremap S "_S
+vnoremap s "_s
+vnoremap S "_S
+
 " split window
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -109,9 +115,33 @@ nnoremap <Leader>err :e %<CR>
 nnoremap <silent><ESC><ESC> :nohlsearch<CR>
 
 
+" vim-plug
+"
+if has('win32')
+  let s:vim_dir = expand('~/vimfiles')
+else
+  let s:vim_dir = expand('~/.vim')
+endif
+
+call plug#begin(expand(s:vim_dir . '/plugged'))
+Plug 'gosukiwi/vim-atom-dark'
+Plug 'scrooloose/nerdtree'
+Plug 'itchyny/lightline.vim'
+Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'tomtom/tcomment_vim'
+Plug 'cohama/lexima.vim'
+Plug 'tpope/vim-endwise'
+Plug 'Yggdroot/indentLine'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'bronson/vim-trailing-whitespace'
+call plug#end()
+
+
 " vim-plug: vim-atom-dark
 "
-if filereadable(expand("~/.vim/plugged/vim-atom-dark/colors/atom-dark-256.vim"))
+if filereadable(expand(s:vim_dir . '/plugged/vim-atom-dark/colors/atom-dark-256.vim'))
   colorscheme atom-dark-256
 endif
 
