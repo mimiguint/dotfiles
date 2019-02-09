@@ -8,12 +8,13 @@ ln -s ~/dotfiles/.vimrc ~/.vimrc
 ```
 
 Install `vim-plug` (https://github.com/junegunn/vim-plug#installation)
+#### Vim
 ```
-# Vim (Unix)
+# Unix
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# Vim (Windows PowerShell)
+# Windows PowerShell
 md ~\vimfiles\autoload
 $uri = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 (New-Object Net.WebClient).DownloadFile(
