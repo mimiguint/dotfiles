@@ -1,3 +1,10 @@
+" xdg environment
+"
+if empty($XDG_CACHE_HOME)
+  let $XDG_CACHE_HOME = expand("$HOME/.cache")
+endif
+
+
 " encoding
 "
 if has('win32')
@@ -36,21 +43,25 @@ set shiftwidth=2
 set expandtab
 
 " directory (backups, swaps, undo, ...)
-if has('win32')
-  set backupdir=$HOME/vimfiles/backups
-  set directory=$HOME/vimfiles/swaps
-  set undodir=$HOME/vimfiles/undo
-else
-  set backupdir=$HOME/.vim/backups
-  set directory=$HOME/.vim/swaps
-  set undodir=$HOME/.vim/undo
-endif
+function! s:make_cache_dir()
+  for l:dir in ['backups', 'swaps', 'undo']
+    let l:cache_dir = expand("$XDG_CACHE_HOME/vim/" . l:dir)
+    if !isdirectory(l:cache_dir)
+      call mkdir(l:cache_dir, 'p')
+    endif
+  endfor
+endfunction
+autocmd VimEnter * call s:make_cache_dir()
+
+set backupdir=$XDG_CACHE_HOME/vim/backups
+set directory=$XDG_CACHE_HOME/vim/swaps
+set undodir=$XDG_CACHE_HOME/vim/undo
 
 " leader key
 let g:mapleader=','
 
 " auto comment
-augroup auto_comment_off
+augroup auto_comment_off_group
   autocmd!
   autocmd BufEnter * setlocal formatoptions-=r
   autocmd BufEnter * setlocal formatoptions-=o
@@ -118,9 +129,9 @@ nnoremap <silent><ESC><ESC> :nohlsearch<CR>
 " vim-plug
 "
 if has('win32')
-  let s:vim_dir = expand('~/vimfiles')
+  let s:vim_dir = expand("$HOME/vimfiles")
 else
-  let s:vim_dir = expand('~/.vim')
+  let s:vim_dir = expand("$HOME/.vim")
 endif
 
 call plug#begin(expand(s:vim_dir . '/plugged'))
