@@ -77,7 +77,7 @@ syntax on
 set t_Co=256
 set ruler
 set number
-"""set nowrap
+set nowrap
 set ambiwidth=double
 set showcmd
 set showmatch
