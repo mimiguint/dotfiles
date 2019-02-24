@@ -144,7 +144,7 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'tomtom/tcomment_vim'
 Plug 'cohama/lexima.vim'
 Plug 'tpope/vim-endwise'
-Plug 'Yggdroot/indentLine'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'bronson/vim-trailing-whitespace'
 call plug#end()
@@ -225,12 +225,14 @@ if has('conceal')
 endif
 
 
-" vim-plug: indentLine
+" vim-plug: vim-indent-guides
 "
-let g:indentLine_enabled = 1
-let g:indentLine_concealcursor = 0
-let g:indentLine_char = '|'
-let g:indentLine_faster = 1
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :highlight IndentGuidesOdd  ctermbg=235
+autocmd VimEnter,Colorscheme * :highlight IndentGuidesEven ctermbg=235
 
 
 " vim-plug: vim-easymotion
