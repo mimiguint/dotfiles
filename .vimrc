@@ -135,7 +135,7 @@ else
 endif
 
 call plug#begin(expand(s:vim_dir . '/plugged'))
-Plug 'gosukiwi/vim-atom-dark'
+Plug 'joshdick/onedark.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'itchyny/lightline.vim'
 Plug 'Shougo/neocomplete.vim'
@@ -152,9 +152,7 @@ call plug#end()
 
 " vim-plug: vim-atom-dark
 "
-if filereadable(expand(s:vim_dir . '/plugged/vim-atom-dark/colors/atom-dark-256.vim'))
-  colorscheme atom-dark-256
-endif
+colorscheme onedark
 
 
 " vim-plug: nerdree
