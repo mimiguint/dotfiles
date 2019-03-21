@@ -136,8 +136,8 @@ endif
 
 call plug#begin(expand(s:vim_dir . '/plugged'))
 Plug 'joshdick/onedark.vim'
-Plug 'scrooloose/nerdtree'
 Plug 'itchyny/lightline.vim'
+Plug 'scrooloose/nerdtree'
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -153,6 +153,13 @@ call plug#end()
 " vim-plug: vim-atom-dark
 "
 colorscheme onedark
+
+
+" vim-plug: lightline
+"
+let g:lightline = {
+  \ 'colorscheme': 'onedark',
+  \ }
 
 
 " vim-plug: nerdree
