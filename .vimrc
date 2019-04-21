@@ -147,6 +147,7 @@ Plug 'tpope/vim-endwise'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'simeji/winresizer'
 call plug#end()
 
 
@@ -244,3 +245,9 @@ autocmd VimEnter,Colorscheme * :highlight IndentGuidesEven guibg=#333333 ctermbg
 "
 let g:EasyMotion_keys = 'hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
 let g:EasyMotion_use_upper = 1
+
+
+" vim-plug: winresizer
+"
+let g:winresizer_vert_resize = 3
+let g:winresizer_horiz_resize = 3
